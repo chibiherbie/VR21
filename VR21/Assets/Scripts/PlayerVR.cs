@@ -37,9 +37,7 @@ public class PlayerVR : MonoBehaviour
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.3 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.3
             && !isFlying)
         {   
-
             OrigCoord();
-
 
             Debug.Log("Нажал левый и правый");
             Instantiate(human, transform.position, transform.rotation);
@@ -64,7 +62,6 @@ public class PlayerVR : MonoBehaviour
         {
             StaticPosition = false;
         }    
-            
     }
 
     private void OrigCoord()
@@ -78,7 +75,7 @@ public class PlayerVR : MonoBehaviour
     {
         scale = (point(positionR, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch))) +
             point(positionL, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch)))) / 400;
-        Debug.Log(scale);
+        Debug.Log(trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch)));
         log.text = scale.ToString();
         camera.transform.localScale += new Vector3(scale, scale, scale);
     }

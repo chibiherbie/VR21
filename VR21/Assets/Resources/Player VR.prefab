@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ada56b36c4bc44580b8a00e67174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  log: {fileID: 0}
   human: {fileID: 2386888705197242884, guid: e0b810e77a5826e4084efee3492d83df, type: 3}
   head: {fileID: 7494025996883794168}
   leftHand: {fileID: 8737248211828436266}
