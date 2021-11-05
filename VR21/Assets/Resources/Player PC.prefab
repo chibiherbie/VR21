@@ -165,8 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  go: {fileID: 0}
-  sensitivity: 1
 --- !u!114 &-2775174138632942563
 MonoBehaviour:
   m_ObjectHideFlags: 0
