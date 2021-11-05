@@ -19,7 +19,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("Connected VR.");
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Player VR", transform.position, transform.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("VR", transform.position, transform.rotation);
         }
 
     }
