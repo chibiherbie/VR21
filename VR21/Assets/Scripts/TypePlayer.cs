@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[InitializeOnLoad]
+
 public class TypePlayer : MonoBehaviour
 {
     
@@ -21,7 +21,7 @@ public class TypePlayer : MonoBehaviour
         else
         {
             Debug.Log("Connected VR.");
-
+            Instantiate(VR, transform.position, transform.rotation);
         }
     }
 }
