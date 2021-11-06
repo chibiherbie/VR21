@@ -18,9 +18,9 @@ public class Back : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(OVRInput.Controller other)
     {
-        if ( other.CompareTag("Hand"))
+        if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.3)
         {
             Instantiate(human, transform.position, transform.rotation);
         }
