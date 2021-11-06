@@ -139,12 +139,12 @@ public class PlayerVR : MonoBehaviour
     private void FlyL()
     {
         Vector3 flyDirection = leftHand.transform.position - head.transform.position;
-        transform.position += flyDirection.normalized * OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch);
+        transform.position += flyDirection.normalized * (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) / 1.5f);
     }
 
     private void FlyR()
     {
         Vector3 flyDirection = rightHand.transform.position - head.transform.position;
-        transform.position += flyDirection.normalized * OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        transform.position += flyDirection.normalized * (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) / 1.5f);
     }
 }
