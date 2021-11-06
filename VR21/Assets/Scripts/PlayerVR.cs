@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static OVRInput;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class PlayerVR : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerVR : MonoBehaviour
 
     bool CanRotate;
 
+    private PhotonView photonView;
     void Start()
     {
         StaticPosition = false;
@@ -36,7 +38,6 @@ public class PlayerVR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         RotateCam();
 
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.3 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.3
@@ -95,7 +96,6 @@ public class PlayerVR : MonoBehaviour
 
     private int CircleRotate()
     {   
-
         int num = 10;
         return num;
     }
