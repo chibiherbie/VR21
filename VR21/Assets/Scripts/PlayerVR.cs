@@ -17,6 +17,7 @@ public class PlayerVR : MonoBehaviour
     public Transform trackingSpace; // reference to the tracking space
 
     private float scale;
+    private float DistanceHand;
 
     Vector3 positionR = new Vector3();
     Vector3 positionL = new Vector3();
@@ -37,10 +38,14 @@ public class PlayerVR : MonoBehaviour
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) > 0.3 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) > 0.3
             && !isFlying)
         {   
-            OrigCoord();
+            if (!StaticPosition)
+            {
+                OrigCoord();
+                StaticPosition = true;
+            }
 
             Debug.Log("Нажал левый и правый");
-            Instantiate(human, transform.position, transform.rotation);
+            //Instantiate(human, transform.position, transform.rotation);
             ChangeSizeVR();
         }
         else
@@ -70,11 +75,14 @@ public class PlayerVR : MonoBehaviour
         Vector3 rotationR = trackingSpace.TransformDirection(OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch).eulerAngles);
         Vector3 positionL = trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch));
         Vector3 rotationL = trackingSpace.TransformDirection(OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch).eulerAngles);
+        DistanceHand = point(positionR, positionL);
     }
     private void ChangeSizeVR()
     {
-        scale = (point(positionR, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch))) +
-            point(positionL, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch)))) / 400;
+        //scale = (point(positionR, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch))) +
+        //   point(positionL, trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch)))) / 400;
+        scale = (DistanceHand - point(trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch)),
+            trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch)))) / 2;
         Debug.Log(trackingSpace.TransformPoint(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch)));
         log.text = scale.ToString();
         camera.transform.localScale += new Vector3(scale, scale, scale);
@@ -82,7 +90,7 @@ public class PlayerVR : MonoBehaviour
 
     private float point(Vector3 first, Vector3 second)
     {
-        return Mathf.Sqrt(Mathf.Pow(second.x - first.x, 2) + Mathf.Pow(second.y - first.y, 2) + Mathf.Pow(second.z - first.z, 2));
+        return Mathf.Sqrt(Mathf.Pow(second.x - first.x, 2) + Mathf.Pow(second.z - first.z, 2));
     }
 
     private void CheckFlying()
