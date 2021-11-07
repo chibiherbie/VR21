@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - Coin
+  - ground
   layers:
   - Default
   - TransparentFX
