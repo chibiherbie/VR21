@@ -823,3 +823,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5135529536389777552}
+  Cam: {fileID: 8498079613858761510}

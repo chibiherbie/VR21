@@ -7,14 +7,15 @@ public class CameraPC : MonoBehaviour
 {
     public GameObject player; // тут объект игрока
     private Vector3 offset;
+    public GameObject Cam;
 
     private PhotonView photonView;
     void Start()
     {
         offset = transform.position - player.transform.position;
-        if (!photonView.IsMine)
+        if (!(Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor))
         {
-            Destroy(Camera.main);
+            Cam.gameObject.SetActive(false);
         }
     }
         

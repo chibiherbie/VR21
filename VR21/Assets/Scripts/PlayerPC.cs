@@ -12,17 +12,12 @@ public class PlayerPC : MonoBehaviour
     {
         speed = 5;
         photonView = GetComponent<PhotonView>();
-
-        if (!photonView.IsMine)
-        {
-            Destroy(Camera.main);
-            Debug.Log(photonView.IsMine);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         // передвижение персонажа
         if (photonView.IsMine)
         {

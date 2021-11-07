@@ -1,28 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1022659407514239372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323082382606624691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 6564226983794617368}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!114 &6564226983794617368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Some text
+  m_Text: 
 --- !u!1001 &5205351851623546699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -440,11 +417,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 745645170438197756, guid: df3ea81c66661804f83f12976e10075f,
+        type: 3}
+      propertyPath: m_ScaleModel.SynchronizeEnabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4137952696977966595, guid: df3ea81c66661804f83f12976e10075f,
         type: 3}
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4137952696977966595, guid: df3ea81c66661804f83f12976e10075f,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137952696977966595, guid: df3ea81c66661804f83f12976e10075f,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 4783965999848566455}
+    - target: {fileID: 4137952696977966595, guid: df3ea81c66661804f83f12976e10075f,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 6564226983794617368}
     - target: {fileID: 7494025996876737808, guid: df3ea81c66661804f83f12976e10075f,
         type: 3}
       propertyPath: disableEyeAnchorCameras
@@ -559,6 +556,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5205351851623546699}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4783965999848566455 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 745645170438197756, guid: df3ea81c66661804f83f12976e10075f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5205351851623546699}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323082382606624693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2323082382606624691 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7494025996883794168, guid: df3ea81c66661804f83f12976e10075f,
