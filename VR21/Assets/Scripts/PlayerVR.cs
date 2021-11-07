@@ -32,6 +32,7 @@ public class PlayerVR : MonoBehaviour
     bool CanRotate;
 
     public GameObject RayShoot;
+    private bool OneShoot = false;
 
     private PhotonView photonView;
     void Start()
@@ -89,19 +90,17 @@ public class PlayerVR : MonoBehaviour
 
             if (TimerShoot >= 150)
             {
-                log.text = "GG";
+                log.text = "Мимо";
                 RaycastHit hitInfo;
                 bool hasHit = Physics.Raycast(rightHand.transform.position, rightHand.transform.forward, out hitInfo, 100);
                 Debug.DrawRay(rightHand.transform.position, rightHand.transform.forward, Color.yellow);
 
-                if (hasHit)
-                {
+                if (hasHit && !OneShoot)
+                {   
                     Dead(hitInfo.transform.position);
                 }
                 
                 //GameObject liner = Instantiate(line);
-
-
             }
             else
             {
@@ -124,11 +123,9 @@ public class PlayerVR : MonoBehaviour
             Rigidbody rb = item.GetComponent<Rigidbody>();
             if (rb)
             {
+                //Instantiate(human, item.transform.position, item.transform.rotation);
                 log.text = "Попал";
-                Instantiate(human, item.transform.position, item.transform.rotation);
             }
-                
-
         }
     }
 
