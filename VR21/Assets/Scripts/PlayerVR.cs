@@ -27,7 +27,11 @@ public class PlayerVR : MonoBehaviour
 
     private bool isFlying = false;
 
+    private int TimerShoot = 0;
+
     bool CanRotate;
+
+    public GameObject RayShoot;
 
     private PhotonView photonView;
     void Start()
@@ -76,6 +80,55 @@ public class PlayerVR : MonoBehaviour
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch) <= 0.1 && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch) <= 0.1)
         {
             StaticPosition = false;
+        }
+
+        if (OVRInput.Get(OVRInput.RawButton.RHandTrigger) && OVRInput.Get(OVRInput.NearTouch.SecondaryThumbButtons) && !OVRInput.Get(OVRInput.NearTouch.SecondaryIndexTrigger))
+        {
+
+            RayShoot.SetActive(true);
+
+            if (TimerShoot >= 150)
+            {
+                log.text = "GG";
+                RaycastHit hitInfo;
+                bool hasHit = Physics.Raycast(rightHand.transform.position, rightHand.transform.forward, out hitInfo, 100);
+                Debug.DrawRay(rightHand.transform.position, rightHand.transform.forward, Color.yellow);
+
+                if (hasHit)
+                {
+                    Dead(hitInfo.transform.position);
+                }
+                
+                //GameObject liner = Instantiate(line);
+
+
+            }
+            else
+            {
+                TimerShoot += 1;
+                log.text = TimerShoot.ToString();
+            }
+        }
+        else
+        {
+            log.text = "";
+            TimerShoot = 0;
+            RayShoot.SetActive(false);
+        }
+    }
+
+    void Dead(Vector3 hitpoint)
+    {
+        foreach (var item in Physics.OverlapSphere(hitpoint, 0.5f))
+            {
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            if (rb)
+            {
+                log.text = "Попал";
+                Instantiate(human, item.transform.position, item.transform.rotation);
+            }
+                
+
         }
     }
 
