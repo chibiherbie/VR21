@@ -124,4 +124,12 @@ public class PlayerPC : MonoBehaviour
         }*/
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 }
