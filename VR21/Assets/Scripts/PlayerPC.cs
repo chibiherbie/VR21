@@ -7,73 +7,21 @@ public enum Type { PlusPosition, ForseRigidbody }
 
 public class PlayerPC : MonoBehaviour
 {
-    /*Rigidbody player;
-    public float forse = 6;
-    public int speed;
-    private PhotonView photonView;
-    
-    void Start()
-    {
-        speed = 5;
-        photonView = GetComponent<PhotonView>();
-        player = GetComponent<Rigidbody>();
-    }
-
-    bool is_ground = true;
-    void OnTriggerStay(Collider col)
-    {
-        if (col.CompareTag("ground")) is_ground = true;
-    }
-    void OnTriggerExit(Collider col)
-    {
-        if (col.CompareTag("ground")) is_ground = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        // передвижение персонажа
-        if (photonView.IsMine)
-        {
-
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-            {
-                float x = Input.GetAxis("Horizontal");
-                float z = Input.GetAxis("Vertical");
-                var v = new Vector3(x, 0.0f, z);
-                transform.position += v * speed * Time.deltaTime;
-            } 
-        }
-        
-        // jump pc Player
-        if (photonView.IsMine)
-        {
-
-            if (Input.GetKeyDown(KeyCode.Space) && is_ground)
-            {
-                player.AddForce(Vector3.up * forse, ForceMode.Impulse);
-                //float x = Input.GetAxis("Horizontal");
-                //float z = Input.GetAxis("Vertical");
-                //var v = new Vector3(x, 0.0f, z);
-                //photonView.AddForse(Vector2.up * forse);
-                //transform.position += v * speed * Time.deltaTime;
-                //transform.Translate(Vector3.up * -3.0f * Time.deltaTime , Space.World);
-            }
-        }
-
-
-    }*/
-
     public Type TypeOf;
     public Transform player;
     public int speed;
-    public int jump;
+    public int forse = 10;
     public Rigidbody rb;
+    public bool is_grounded =  true;
+
+    public float Rot;
+    
+    private readonly Vector3 jumpDirection = Vector3.up;
     
     private void Start()
     {
         player = transform;
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -99,31 +47,42 @@ public class PlayerPC : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {        //если нажата кнопка "пробел" и игрок на земле
-            rb.AddForce(Vector3.up * jump, ForceMode.Impulse);  //то придаем ему силу вверх импульсным пинком
+        {       
+            this.Jump();
         }
 
+        MouseMove();
+
+    }
 
 
-        /*else
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                player.position -= player.forward * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                player.position += player.right * speed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A))
-            {
-                player.position -= player.right * speed * Time.deltaTime;
-            }
-        }*/
+
+    private void MouseMove()
+    {
+        Rot += Input.GetAxis("Mouse X");
+
+        player.transform.rotation = Quaternion.Euler(0f, Rot, 0f);
+    }
+
+    private void Jump()
+    {
+        if (this.is_grounded)
+            rb.AddForce(Vector3.up * forse, ForceMode.Impulse);
+            
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        var ground = other.gameObject.CompareTag("ground");
+        if (ground)
+            this.is_grounded = true;
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        var ground = other.gameObject.CompareTag("ground"); 
+        if (ground)
+            this.is_grounded = false;
     }
 
     private void OnTriggerEnter(Collider other)
