@@ -67,6 +67,7 @@ public class PlayerPC : MonoBehaviour
     public Transform player;
     public int speed;
     public int jump;
+    public Rigidbody rb;
     
     private void Start()
     {
@@ -94,6 +95,14 @@ public class PlayerPC : MonoBehaviour
                 player.position -= player.right * speed * Time.deltaTime;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {        //если нажата кнопка "пробел" и игрок на земле
+            rb.AddForce(Vector3.up * jump, ForceMode.Impulse);  //то придаем ему силу вверх импульсным пинком
+        }
+
+
+
         /*else
         {
             if (Input.GetKey(KeyCode.W))
