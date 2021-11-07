@@ -21,6 +21,7 @@ public class CameraPC : MonoBehaviour
         {
             Cam.gameObject.SetActive(false);
         }
+        Cursor.visible = false;
     }
 
     private void Update()

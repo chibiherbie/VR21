@@ -14,6 +14,9 @@ public class PlayerPC : MonoBehaviour
     public Rigidbody rb;
     public bool is_grounded =  true;
 
+
+    public AudioClip CoinFX;
+
     public float Rot;
     
     private readonly Vector3 jumpDirection = Vector3.up;
@@ -22,6 +25,7 @@ public class PlayerPC : MonoBehaviour
     {
         player = transform;
         rb = GetComponent<Rigidbody>();
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -90,6 +94,7 @@ public class PlayerPC : MonoBehaviour
         if (other.tag == "Coin")
         {
             Destroy(other.gameObject);
+
         }
     }
 
