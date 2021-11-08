@@ -228,8 +228,8 @@ GameObject:
   - component: {fileID: -2775174138632942563}
   - component: {fileID: -2582641136429359210}
   - component: {fileID: 1591385051219876371}
-  - component: {fileID: 4090569138932138020}
   - component: {fileID: 2653419030434236418}
+  - component: {fileID: 545563804591982902}
   m_Layer: 0
   m_Name: Player PC
   m_TagString: Untagged
@@ -443,23 +443,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4090569138932138020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510255725589485371}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af84774487c392942ac205ae07eba499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  Cam: {fileID: 453633797847094343}
-  RotY: 0
-  RotX: 0
-  cameraTr: {fileID: 0}
 --- !u!136 &2653419030434236418
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -474,6 +457,23 @@ CapsuleCollider:
   m_Height: 4.596704
   m_Direction: 1
   m_Center: {x: 0.047166206, y: -1.3962917, z: 0}
+--- !u!114 &545563804591982902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510255725589485371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1978fbf758c4d7e44a59e1a023d3ff9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 360b663a8b705ae46ab7f66b45c4003b, type: 3}
+  - {fileID: 8300000, guid: e5b06e5c9e6d6dc47b35904655037337, type: 3}
+  - {fileID: 8300000, guid: 6e2cff3654fa32d459348958e5456bb8, type: 3}
+  audio: {fileID: 1591385051219876371}
 --- !u!1 &1161750088773770305
 GameObject:
   m_ObjectHideFlags: 0
